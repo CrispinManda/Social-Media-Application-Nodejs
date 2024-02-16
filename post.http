@@ -7,3 +7,17 @@ Content-Type: application/json
     "user_id": "8",
     "content": "This is the content of the postuser id 7 again."
 }
+
+### //getAllPosts
+POST http://localhost:8000/api/posts/getAllPosts
+Content-Type: application/json
+
+
+### deleteSinglePostController
+POST http://localhost:8000/api/posts/4
+Content-Type: application/json
+
+
+### getUserPostsController
+GET http://localhost:8000/api/posts/2
+Content-Type: application/json

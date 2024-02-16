@@ -5,6 +5,7 @@ import {
   deleteUserById,
   getAllUsers,
   getUserById,
+  
 } from "../services/userService.js";
 import { userValidator, userLoginValidator,} from "../validators/userValidator.js";
 import {sendServerError,sendCreated,notAuthorized,} from "../helper/helperFunctions.js";
@@ -74,10 +75,8 @@ export const getAllUsersController = async (req, res) => {
     // Call the getAllUsers service function
     const users = await getAllUsers();
 
-    // Respond with the list of users
     return res.status(200).json(users);
   } catch (error) {
-    // Handle any errors that occur during the retrieval process
     console.error("Error retrieving users:", error);
     return res.status(500).json({ error: "Internal server error" });
   }
@@ -86,20 +85,15 @@ export const getAllUsersController = async (req, res) => {
 
 
 export const getUserByIdController = async (req, res) => {
-  const userId = req.params.id; // Extract the user ID from request parameters
+  const userId = req.params.id; 
   try {
-    // Call the getUserById service function with the user ID
     const user = await getUserById(userId);
 
-    // If user not found, return 404 error
     if (!user) {
       return res.status(404).json({ error: "User not found" });
     }
-
-    // Respond with the user object
     return res.status(200).json(user);
   } catch (error) {
-    // Handle any errors that occur during the retrieval process
     console.error("Error retrieving user:", error);
     return res.status(500).json({ error: "Internal server error" });
   }
@@ -107,22 +101,20 @@ export const getUserByIdController = async (req, res) => {
 
 
 export const deleteUser = async (req, res) => {
-  const userId = req.params.id; // Assuming you're passing the user ID in the request params
+  const userId = req.params.id; 
   try {
-    // Call the user deletion service function
     const deletedUser = await deleteUserById(userId);
 
     if (!deletedUser) {
       return res.status(404).json({ error: "User not found" });
     }
 
-    // Respond with a success message or any other relevant data
     return res
       .status(200)
       .json({ message: "User deleted successfully", deletedUser });
   } catch (error) {
-    // Handle any errors that occur during the deletion process
     console.error("Error deleting user:", error);
     return res.status(500).json({ error: "Internal server error" });
   }
 };
+

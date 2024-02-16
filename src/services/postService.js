@@ -32,3 +32,66 @@ export const createPost = async ({ photo_url, user_id, content }) => {
     throw error;
   }
 };
+
+
+export const getAllPosts = async () => {
+  try {
+    const query = `
+            SELECT *
+            FROM Posts;
+        `;
+
+    const result = await poolRequest().query(query);
+
+    if (!result.recordset || result.recordset.length === 0) {
+      return { message: "No posts found" };
+    }
+
+    return result.recordset;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const deleteSinglePost = async (postId) => {
+  try {
+    const query = `
+            DELETE FROM Posts
+            WHERE post_id = @postId;
+        `;
+
+    const result = await poolRequest()
+      .input("postId", sql.Int, postId)
+      .query(query);
+
+    if (result.rowsAffected[0] === 0) {
+      return { message: "Post not found" };
+    }
+
+    return { message: "Post deleted successfully" };
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const getUserPosts = async (userId) => {
+  try {
+    const query = `
+            SELECT *
+            FROM Posts
+            WHERE user_id = @userId;
+        `;
+
+    const result = await poolRequest()
+      .input("userId", sql.Int, userId)
+      .query(query);
+
+    if (!result.recordset || result.recordset.length === 0) {
+      return { message: "You do not have posts yet!. Go ahead and post. " };
+    }
+
+    return result.recordset;
+  } catch (error) {
+    throw error;
+  }
+};
