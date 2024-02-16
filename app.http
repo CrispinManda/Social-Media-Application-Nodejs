@@ -1,0 +1,68 @@
+
+//health check
+GET http://localhost:8000/health
+//get all todos
+### Request
+GET http://localhost:8000/api/todos 
+Content-Type: application/json
+Authorization: JWT edyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJ0ZXN0dXNlciIsImVtYWlsIjoidGVzdEBnbWFpbC5jb20iLCJpYXQiOjE3MDc5MDMzMjAsImV4cCI6MTcwNzkxMDUyMH0.KS0kfMJZauvEGCKZj6mLr7XJftvsHCuRLWrYsKRWu0g
+
+
+### Request // filter todos with pages and limit
+GET http://localhost:8000/api/todos?page=1&limit=2
+
+### Request // order todos asc or desc
+GET http://localhost:8000/api/todos?order=desc 
+
+### Request // filter todos with pages and limit && order todos asc or desc
+GET http://localhost:8000/api/todos?page=1&limit=3&order=asc
+
+### //get todo by id
+GET http://localhost:8000/api/todos/4
+
+### //create todo
+POST http://localhost:8000/api/todos 
+content-Type: application/json
+Authorization: JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJ0ZXN0dXNlciIsImVtYWlsIjoidGVzdEBnbWFpbC5jb20iLCJpYXQiOjE3MDc5MDMzMjAsImV4cCI6MTcwNzkxMDUyMH0.KS0kfMJZauvEGCKZj6mLr7XJftvsHCuRLWrYsKRWu0g
+
+
+{
+    "title": "todo from rest client3",
+    "completed" : "0"
+}
+
+### //update todo
+PUT http://localhost:8000/api/todos/6
+Content-Type: application/json
+
+{
+  "title": "test13",
+  "completed" :  1    
+}
+
+### //complete a todo
+PATCH  http://localhost:8000/api/todos/7
+Content-Type: application/json
+
+### //delete todo
+DELETE http://localhost:8000/api/todos/5
+
+### //create user
+POST http://localhost:8000/api/users/register 
+content-Type: application/json
+
+{
+    "username": "testuser2",
+    "email" : "test@gmail2.com",
+    "password" : "123456"
+}
+
+### //login user
+POST http://localhost:8000/api/users/auth/login
+content-Type: application/json
+
+{
+    "username": "testuser",
+    "password" : "123456"
+}
+

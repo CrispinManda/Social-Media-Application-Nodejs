@@ -1,0 +1,44 @@
+
+//health check
+GET http://localhost:8000/health
+
+
+### //create user
+POST http://localhost:8000/api/users/register 
+content-Type: application/json
+
+{
+    "first_name": "Peter",
+    "last_name": "Doe",
+    "username": "peter",
+    "password": "password123",
+    "email": "peter@example.com"
+}
+
+# userRouter.delete("/users/profile/:id", deleteUser);
+
+### //login user
+POST http://localhost:8000/api/users/auth/login
+content-Type: application/json
+
+{
+    "username": "peter",
+    "password" : "password123"
+}
+
+### //delete user
+DELETE http://localhost:8000/api/users/profile/3
+
+#### //get all users
+GET http://localhost:8000/api/users/profile/
+
+
+
+#### //get users by ID
+GET http://localhost:8000/api/users/profile/8
+Content-Type: application/json
+
+
+
+
+

@@ -1,0 +1,11 @@
+
+### CreateMessage
+POST http://localhost:8000/api/message/createMessage
+Content-Type: application/json
+
+{
+    "sender_id": 8,
+    "receiver_id": 7,
+    "message_text": "Hello, this is a test message.",
+    "sent_at": "2024-02-20T12:00:00Z"
+}

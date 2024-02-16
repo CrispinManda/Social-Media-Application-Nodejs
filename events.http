@@ -1,0 +1,18 @@
+
+//health check
+GET http://localhost:8000/health
+
+
+### //create events
+POST http://localhost:8000/api/event/createEvent
+Content-Type: application/json
+
+{
+    "event_name": "Sample Event",
+    "event_date": "2024-02-20",
+    "location": "Sample Location",
+    "description": "This is a sample event.",
+    "created_by": "6"
+}
+
+

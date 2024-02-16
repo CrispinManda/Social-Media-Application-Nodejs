@@ -1,0 +1,9 @@
+### //create Post
+POST http://localhost:8000/api/posts/createPost
+Content-Type: application/json
+
+{
+    "photo_url": "",
+    "user_id": "8",
+    "content": "This is the content of the postuser id 7 again."
+}

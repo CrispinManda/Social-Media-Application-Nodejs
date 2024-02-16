@@ -1,0 +1,9 @@
+### //create Group
+POST http://localhost:8000/api/groups/createGroup
+Content-Type: application/json
+
+{
+    "group_name": "Sample Group",
+    "description": "This is a sample group.",
+    "created_by": "8"
+}
