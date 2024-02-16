@@ -95,3 +95,35 @@ export const getUserPosts = async (userId) => {
     throw error;
   }
 };
+
+export const editPost = async ({ post_id, photo_url, user_id, content }) => {
+  try {
+    // Check if post_id is provided
+    if (!post_id) {
+      return { error: "post_id is required" };
+    }
+
+    const query = `
+            UPDATE Posts
+            SET photo_url = @photo_url,
+                user_id = @user_id,
+                content = @content
+            WHERE post_id = @post_id;
+        `;
+
+    const result = await poolRequest()
+      .input("post_id", sql.Int, post_id)
+      .input("photo_url", sql.VarChar, photo_url)
+      .input("user_id", sql.Int, user_id)
+      .input("content", sql.VarChar, content)
+      .query(query);
+
+    if (result.rowsAffected[0] === 0) {
+      return { message: "Post not found" };
+    }
+
+    return { message: "Post updated successfully" };
+  } catch (error) {
+    throw error;
+  }
+};

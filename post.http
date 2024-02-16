@@ -21,3 +21,15 @@ Content-Type: application/json
 ### getUserPostsController
 GET http://localhost:8000/api/posts/2
 Content-Type: application/json
+
+
+### editPostController
+PUT http://localhost:8000/api/posts/editPost
+Content-Type: application/json
+
+{
+  "post_id": 1,
+  "photo_url": "https://example.com/new-photo.jpg",
+  "user_id": 6,
+  "content": "Updated post content"
+}

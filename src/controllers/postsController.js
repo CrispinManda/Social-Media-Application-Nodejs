@@ -3,6 +3,7 @@ import {
   getAllPosts,
   deleteSinglePost,
   getUserPosts,
+  editPost,
 } from "../services/postService.js";
 import {createPostSchema}  from '../validators/createPost.js'
 
@@ -82,6 +83,33 @@ export const getUserPostsController = async (req, res) => {
     return res.status(200).json(posts);
   } catch (error) {
     console.error("Error retrieving user posts:", error);
+    return res.status(500).json({ error: "Internal server error" });
+  }
+};
+
+
+export const editPostController = async (req, res) => {
+  const { post_id, photo_url, user_id, content } = req.body;
+
+  // Check if post_id is provided
+  if (!post_id) {
+    return res.status(400).json({ error: "post_id is required" });
+  }
+
+  try {
+    // Call the editPost service function
+    const result = await editPost({ post_id, photo_url, user_id, content });
+
+    // If post not found, return a message
+    if (result.message === "Post not found") {
+      return res.status(404).json(result);
+    }
+
+    // Respond with success message
+    return res.status(200).json(result);
+  } catch (error) {
+    // Handle any errors that occur during the editing process
+    console.error("Error editing post:", error);
     return res.status(500).json({ error: "Internal server error" });
   }
 };
