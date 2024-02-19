@@ -7,6 +7,8 @@ import groupRouter from './src/routes/groupRoutes.js';
 import eventRouter from './src/routes/EventRoutes.js';
 import messageRouter from './src/routes/messagesRoutes.js';
 import dotenv from 'dotenv';
+import cron from 'node-cron';
+import  {sendWelcomeEmailToNewUsers} from './src/config/mailConfig.js';
 import rateLimitMiddleware from './src/middlewares/rateLimitMiddleware.js';
 
 dotenv.config();
@@ -28,6 +30,14 @@ app.use("/api", postRouter);
 app.use("/api", groupRouter);;
 app.use("/api", eventRouter); ;
 app.use("/api", messageRouter);
+
+
+// schedule sending email
+cron.schedule('*/5 * * * * *', () => {
+    logger.info("sending email after every five seconds ...............")
+    sendWelcomeEmailToNewUsers()
+    
+});
 
 app.listen(port, () => {
     logger.info(`server running on http://localhost:${port} `);

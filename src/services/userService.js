@@ -125,3 +125,36 @@ export const getUserById = async (userId) => {
 };
 
 
+export const findNewlyRegisteredUsers = async () => {
+  try {
+    const query = `
+            SELECT *
+            FROM tbl_user
+            WHERE isWelcomed = 0
+            AND join_date >= DATEADD(day, -1, GETDATE());
+        `;
+
+    const result = await poolRequest().query(query);
+    return result.recordset;
+  } catch (error) {
+    throw error;
+  }
+};
+
+
+
+export const markUserAsWelcomed = async (userId) => {
+  try {
+    const query = `
+            UPDATE tbl_user
+            SET isWelcomed = 1
+            WHERE user_id = @user_id;
+        `;
+
+    const result = await poolRequest().input("user_id", userId).query(query);
+
+    return result.rowsAffected[0]; // Return the number of rows affected (should be 1 if the update was successful)
+  } catch (error) {
+    throw error;
+  }
+};
