@@ -8,14 +8,13 @@ POST http://localhost:8000/api/users/register
 content-Type: application/json
 
 {
-    "first_name": "Peter",
-    "last_name": "Doe",
-    "username": "peter",
+    "first_name": "Joee",
+    "last_name": "Kibe",
+    "username": "joe",
     "password": "password123",
-    "email": "peter@example.com"
+    "email": "joeper@example.com"
 }
 
-# userRouter.delete("/users/profile/:id", deleteUser);
 
 ### //login user
 POST http://localhost:8000/api/users/auth/login
@@ -33,10 +32,10 @@ DELETE http://localhost:8000/api/users/profile/3
 GET http://localhost:8000/api/users/profile/
 
 
-
-#### //get users by ID
+### //get users by ID
 GET http://localhost:8000/api/users/profile/8
-Content-Type: application/json
+
+
 
 
 

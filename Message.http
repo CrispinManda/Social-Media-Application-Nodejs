@@ -4,8 +4,21 @@ POST http://localhost:8000/api/message/createMessage
 Content-Type: application/json
 
 {
-    "sender_id": 8,
-    "receiver_id": 7,
-    "message_text": "Hello, this is a test message.",
+    "sender_id": 7,
+    "receiver_id": 8,
+    "message_text": "Hey, this is a test message3.",
     "sent_at": "2024-02-20T12:00:00Z"
 }
+
+### DeleteAllMessages  
+POST http://localhost:8000/api/message/deleteMessage
+Content-Type: application/json
+
+{
+  "sender_id": 8,
+  "receiver_id": 7
+}
+
+###deleteSingleMessage
+DELETE http://localhost:8000/api/message/1004
+Content-Type: application/json

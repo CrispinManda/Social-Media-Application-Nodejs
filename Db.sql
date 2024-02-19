@@ -136,3 +136,6 @@ CREATE TABLE Messages (
     FOREIGN KEY (sender_id) REFERENCES tbl_user(user_id),
     FOREIGN KEY (receiver_id) REFERENCES tbl_user(user_id)
 );
+
+
+

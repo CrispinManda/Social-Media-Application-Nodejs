@@ -19,3 +19,22 @@ export const createGroup = async ({ group_name, description, created_by }) => {
     throw error;
   }
 };
+
+
+export const joinGroup = async ({ group_id, user_id }) => {
+  try {
+    const query = `
+            INSERT INTO Group_members (group_id, user_id)
+            VALUES (@group_id, @user_id);
+        `;
+
+    const result = await poolRequest()
+      .input("group_id", sql.Int, group_id)
+      .input("user_id", sql.Int, user_id)
+      .query(query);
+
+    return result.rowsAffected[0];
+  } catch (error) {
+    throw error;
+  }
+};

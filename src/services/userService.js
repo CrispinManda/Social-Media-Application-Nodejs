@@ -74,16 +74,12 @@ export const deleteUserById = async (userId) => {
 
     const result = await poolRequest().input("userId", userId).query(query);
 
-    // Check if any rows were affected by the delete operation
     if (result.rowsAffected && result.rowsAffected[0] > 0) {
-      // If at least one row was affected, return true to indicate success
       return true;
     } else {
-      // If no rows were affected, it means the user does not exist
       return false;
     }
   } catch (error) {
-    // If any error occurs during the deletion process, throw the error
     throw error;
   }
 };
@@ -113,17 +109,19 @@ export const getUserById = async (userId) => {
             WHERE user_id = @userId;
         `;
 
+      // console.log(query);
     const result = await poolRequest()
       .input("userId", sql.Int, userId)
       .query(query);
 
-    // Check if the result contains any rows
     if (result.recordset.length > 0) {
       return result.recordset[0]; // Return the first user found
     } else {
-      return null; // If no user found, return null
+      return null;
     }
   } catch (error) {
     throw error;
   }
 };
+
+

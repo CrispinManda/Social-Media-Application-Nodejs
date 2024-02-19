@@ -1,7 +1,6 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import logger from './src/utils/logger.js';
-import todoRouter from './src/routes/todoRoutes.js';
 import userRouter from './src/routes/userRoutes.js';
 import postRouter from './src/routes/postRoutes.js';
 import groupRouter from './src/routes/groupRoutes.js';
@@ -24,7 +23,6 @@ app.get('/health', (req, res) => {
 });
 
 //Routes
-app.use('/api', todoRouter);
 app.use('/api', userRouter);
 app.use("/api", postRouter); 
 app.use("/api", groupRouter);;

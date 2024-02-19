@@ -7,3 +7,13 @@ Content-Type: application/json
     "description": "This is a sample group.",
     "created_by": "8"
 }
+
+### //join Group
+POST http://localhost:8000/api/groups/joinGroup
+Content-Type: application/json
+
+
+{
+  "group_id": 2,
+  "user_id": 8
+}
